@@ -1,0 +1,57 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  background: map-get($colors, white);
+  border-radius: map-get($borderRadius, lg);
+  
+  .user-content {
+    padding: 40px 32px;
+
+    .user-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 20px;
+
+      .user-icon {
+        cursor: pointer;
+        width: 25px;
+
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  .user-avatar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .user-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+
+    .user-created-at-date {
+      color: map-get($colors, error)
+    }
+  }
+
+  @media (max-width: 992px) {
+    .user-title {
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+  }
+
+  .user-description {
+    margin-top: 8px;
+  }
+}

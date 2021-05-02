@@ -1,0 +1,6 @@
+{
+  "INTERNAL_ERROR_RESPONSE_MESSAGE": "Internal server error:",
+  "ENTITY_NOT_FOUND_ERROR_RESPONSE_MESSAGE": "The requested entity is not found.",
+  "QUERY_NOT_FOUND_ERROR_RESPONSE_MESSAGE": "The query should be informed",
+  "ID_NOT_FOUND_ERROR_RESPONSE_MESSAGE": "The id should be informed"
+}

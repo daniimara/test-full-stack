@@ -1,0 +1,12 @@
+{
+  "somethingWentWrong": "Oops! Something went wrong! Please try again later.",
+  "userCreatedSuccess": "User created successfully.",
+  "userUpdatedSuccess": "User updated successfully.",
+  "userDeletedSuccess": "User deleted successfully.",
+  "locationNotFound": "Location not found",
+  "deleteConfirmationText": "Are you sure you want to delete this item?",
+  "loadMore": "LOAD MORE",
+  "cancel": "CANCEL",
+  "delete": "DELETE",
+  "save": "SAVE"
+}

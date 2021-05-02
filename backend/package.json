@@ -1,0 +1,31 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "start": "sst start",
+    "build": "sst build",
+    "deploy": "sst deploy",
+    "remove": "sst remove"
+  },
+  "dependencies": {
+    "@aws-cdk/core": "1.98.0",
+    "@serverless-stack/cli": "0.13.0",
+    "@serverless-stack/resources": "0.13.0",
+    "axios": "^0.21.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.98.0",
+    "@types/aws-lambda": "^8.10.70",
+    "@types/faker": "^5.5.3",
+    "@types/jest": "^26.0.23",
+    "@types/uuid": "^8.3.0",
+    "faker": "^5.5.3",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.5"
+  }
+}
