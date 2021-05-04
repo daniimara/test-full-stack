@@ -17,6 +17,8 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["lib","src"]
