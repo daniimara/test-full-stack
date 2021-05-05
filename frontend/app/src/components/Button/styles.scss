@@ -1,0 +1,73 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.primary-button button,
+.secondary-button button {
+  cursor: pointer;
+  overflow: hidden;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 4px;
+  box-sizing: border-box;
+  border-radius: map-get($borderRadius, lg);
+  min-width: 280px;
+  height: 90px;
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: map-get($fontWeights, bold);
+  font-size: toRem(24);
+  color: map-get($colors, black);
+
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.primary-button button {
+  background: map-get($colors, white);
+}
+
+.secondary-button button {
+  background: transparent;
+}
+
+@media (max-width: 1799px) {
+  .primary-button button,
+  .secondary-button button {
+    min-width: 260px;
+    height: 60px;
+    font-size: toRem(16);
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .primary-button button,
+  .secondary-button button {
+    min-width: 250px;
+    height: 50px;
+    font-size: toRem(14);
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 992px) {
+  .primary-button button,
+  .secondary-button button {
+    min-width: 200px;
+    height: 40px;
+    font-size: toRem(13);
+    border-width: 1px;
+  }
+}
