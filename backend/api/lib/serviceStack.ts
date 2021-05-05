@@ -38,6 +38,7 @@ export default class ServiceStack extends sst.Stack {
       },
       resolvers: {
         "Query    listAllUsers": "users",
+        "Query    listUsers": "users",
         "Query    getUserById": "users",
         "Query    getUserByName": "users",
         "Mutation createUser": "users",

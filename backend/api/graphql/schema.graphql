@@ -9,6 +9,11 @@ type User {
   updatedAt: String!
 }
 
+type UsersWithPaginationParams {
+  items: [User]
+  exclusiveStartKey: String
+}
+
 input UserInput {
   name: String!
   dob: String
@@ -26,8 +31,14 @@ input UpdateUserInput {
   imageUrl: String!
 }
 
+input ListUsersInput {
+  pageSize: Int!
+  exclusiveStartKey: String
+}
+
 type Query {
   listAllUsers: [User]
+  listUsers(input: ListUsersInput!): UsersWithPaginationParams
   getUserById(userId: String!): User
   getUserByName(userName: String!): [User]
 }

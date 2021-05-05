@@ -1,5 +1,6 @@
 import createUser from "./createUser";
 import listAllUsers from "./listAllUsers";
+import listUsers from "./listUsers";
 import getUserById from "./getUserById";
 import updateUser from "./updateUser";
 import deleteUser from "./deleteUser";
@@ -13,15 +14,18 @@ type AppSyncEvent = {
     user: User;
     userId: string;
     userName: string;
+    input: ListUsersInput;
   };
 };
 
 export async function handler(
   event: AppSyncEvent
-): Promise<User[] | User | string | null> {
+): Promise<User[] | UsersWithPaginationParams | User | string | null> {
   switch (event.info.fieldName) {
     case "listAllUsers":
       return await listAllUsers();
+    case "listUsers":
+      return await listUsers(event.arguments.input);
     case "createUser":
       return await createUser(event.arguments.user);
     case "updateUser":
