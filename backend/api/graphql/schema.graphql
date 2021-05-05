@@ -17,6 +17,15 @@ input UserInput {
   imageUrl: String!
 }
 
+input UpdateUserInput {
+  id: ID!
+  name: String!
+  dob: String
+  address: String!
+  description: String!
+  imageUrl: String!
+}
+
 type Query {
   listAllUsers: [User]
   getUserById(userId: String!): User
@@ -24,4 +33,5 @@ type Query {
 
 type Mutation {
   createUser(user: UserInput!): User
+  updateUser(user: UpdateUserInput!): User
 }

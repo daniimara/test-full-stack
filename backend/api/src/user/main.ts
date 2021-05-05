@@ -1,6 +1,7 @@
 import createUser from "./createUser";
 import listAllUsers from "./listAllUsers";
 import getUserById from "./getUserById";
+import updateUser from "./updateUser";
 
 type AppSyncEvent = {
   info: {
@@ -20,6 +21,8 @@ export async function handler(
       return await listAllUsers();
     case "createUser":
       return await createUser(event.arguments.user);
+    case "updateUser":
+      return await updateUser(event.arguments.user);
     case "getUserById":
       return await getUserById(event.arguments.userId);
     default:

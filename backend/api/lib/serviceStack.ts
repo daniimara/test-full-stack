@@ -40,6 +40,7 @@ export default class ServiceStack extends sst.Stack {
         "Query    listAllUsers": "users",
         "Query    getUserById": "users",
         "Mutation createUser": "users",
+        "Mutation updateUser": "users",
       },
     });
 
