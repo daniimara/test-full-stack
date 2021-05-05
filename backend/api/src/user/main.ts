@@ -3,6 +3,7 @@ import listAllUsers from "./listAllUsers";
 import getUserById from "./getUserById";
 import updateUser from "./updateUser";
 import deleteUser from "./deleteUser";
+import getUserByName from "./getUserByName";
 
 type AppSyncEvent = {
   info: {
@@ -11,6 +12,7 @@ type AppSyncEvent = {
   arguments: {
     user: User;
     userId: string;
+    userName: string;
   };
 };
 
@@ -26,6 +28,8 @@ export async function handler(
       return await updateUser(event.arguments.user);
     case "getUserById":
       return await getUserById(event.arguments.userId);
+    case "getUserByName":
+      return await getUserByName(event.arguments.userName);
     case "deleteUser":
       return await deleteUser(event.arguments.userId);
     default:
