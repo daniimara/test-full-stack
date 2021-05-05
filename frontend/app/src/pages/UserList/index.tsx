@@ -7,13 +7,19 @@ import Card from "components/Card";
 import Snackbar, { SnackbarProps } from "components/Snackbar";
 import Spinner from "components/Spinner";
 
-import { useQuery, NetworkStatus, ApolloError } from "@apollo/client";
+import {
+  useQuery,
+  useLazyQuery,
+  NetworkStatus,
+  ApolloError,
+} from "@apollo/client";
 import { queryListUsers } from "graphql-client/queries/get-users";
+import { queryGetUserByName } from "graphql-client/queries/get-user-by-name";
 
 import actionMessages from "resources/messages-actions.json";
 import serviceMessages from "resources/messages-services.json";
 import userMessages from "resources/messages-user.json";
-import { DEFAULT_PAGE_SIZE } from "config/constants";
+import { DEFAULT_PAGE_SIZE, DEFAULT_SEARCH_CHARACTER } from "config/constants";
 
 export interface UserListProps {
   listUsers: User[];
@@ -32,6 +38,7 @@ export const UserList: FC<UserListProps> = ({
 }) => {
   const url = new URL(window.location.href);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [searchResult, setSearchResult] = useState<User[]>([]);
   const [page, setPage] = useState<number>(1);
   const [snackbar, setSnackbar] = useState<SnackbarProps>({
     open: false,
@@ -60,6 +67,30 @@ export const UserList: FC<UserListProps> = ({
     window.history.pushState({}, "", url.href);
   };
 
+  const [getUserByName, { loading: getUserByNameLoading }] = useLazyQuery(
+    queryGetUserByName,
+    {
+      onCompleted: (data: Query) => {
+        setSearchResult(data?.getUserByName);
+      },
+      onError: () => {
+        setSnackbar({
+          open: true,
+          type: "error",
+          message: serviceMessages.somethingWentWrong,
+        });
+      },
+    }
+  );
+
+  useEffect(() => {
+    if (!!searchValue && searchValue.length > DEFAULT_SEARCH_CHARACTER) {
+      getUserByName({ variables: { userName: searchValue } });
+    } else {
+      setSearchResult([]);
+    }
+  }, [getUserByName, searchValue]);
+
   const loading = listUsersLoading;
 
   const userCard = (user: User) => {
@@ -77,7 +108,7 @@ export const UserList: FC<UserListProps> = ({
 
   return (
     <>
-      {loading && <Spinner />}
+      {(loading || getUserByNameLoading) && <Spinner />}
       <div className="user-list">
         <div className="user-list-header">
           <h1>{userMessages.listTitle}</h1>
@@ -96,9 +127,19 @@ export const UserList: FC<UserListProps> = ({
           )}
         </div>
         <div className="user-list-cards">
-          {sortBy(listUsers, [(user) => user.createdAt]).map((user) => {
-            return userCard(user);
-          })}
+          {searchResult.length > 0 ? (
+            <>
+              {sortBy(searchResult, [(user) => user.createdAt]).map((user) => {
+                return userCard(user);
+              })}
+            </>
+          ) : (
+            <>
+              {sortBy(listUsers, [(user) => user.createdAt]).map((user) => {
+                return userCard(user);
+              })}
+            </>
+          )}
         </div>
         <div className="user-list-actions">
           {!loading && shouldLoadMore && (
