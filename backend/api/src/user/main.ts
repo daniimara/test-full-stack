@@ -2,6 +2,7 @@ import createUser from "./createUser";
 import listAllUsers from "./listAllUsers";
 import getUserById from "./getUserById";
 import updateUser from "./updateUser";
+import deleteUser from "./deleteUser";
 
 type AppSyncEvent = {
   info: {
@@ -15,7 +16,7 @@ type AppSyncEvent = {
 
 export async function handler(
   event: AppSyncEvent
-): Promise<User[] | User | null> {
+): Promise<User[] | User | string | null> {
   switch (event.info.fieldName) {
     case "listAllUsers":
       return await listAllUsers();
@@ -25,6 +26,8 @@ export async function handler(
       return await updateUser(event.arguments.user);
     case "getUserById":
       return await getUserById(event.arguments.userId);
+    case "deleteUser":
+      return await deleteUser(event.arguments.userId);
     default:
       return null;
   }
