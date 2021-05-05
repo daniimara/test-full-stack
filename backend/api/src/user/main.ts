@@ -1,5 +1,6 @@
 import createUser from "./createUser";
 import listAllUsers from "./listAllUsers";
+import getUserById from "./getUserById";
 
 type AppSyncEvent = {
   info: {
@@ -7,6 +8,7 @@ type AppSyncEvent = {
   };
   arguments: {
     user: User;
+    userId: string;
   };
 };
 
@@ -18,6 +20,8 @@ export async function handler(
       return await listAllUsers();
     case "createUser":
       return await createUser(event.arguments.user);
+    case "getUserById":
+      return await getUserById(event.arguments.userId);
     default:
       return null;
   }

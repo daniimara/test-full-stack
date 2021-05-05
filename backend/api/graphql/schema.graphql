@@ -19,6 +19,7 @@ input UserInput {
 
 type Query {
   listAllUsers: [User]
+  getUserById(userId: String!): User
 }
 
 type Mutation {
