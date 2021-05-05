@@ -1,4 +1,5 @@
 import createUser from "./createUser";
+import listAllUsers from "./listAllUsers";
 
 type AppSyncEvent = {
   info: {
@@ -9,8 +10,12 @@ type AppSyncEvent = {
   };
 };
 
-export async function handler(event: AppSyncEvent): Promise<User | null> {
+export async function handler(
+  event: AppSyncEvent
+): Promise<User[] | User | null> {
   switch (event.info.fieldName) {
+    case "listAllUsers":
+      return await listAllUsers();
     case "createUser":
       return await createUser(event.arguments.user);
     default:

@@ -18,6 +18,7 @@ input UserInput {
 }
 
 type Query {
+  listAllUsers: [User]
 }
 
 type Mutation {
