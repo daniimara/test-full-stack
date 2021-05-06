@@ -136,7 +136,13 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 #### graphql:gen
 
-It should generate types based on the graphql schema. Needs to be run anytime the grahpql schema is updated at the backend.
+It should generate types based on the graphql schema. Needs to be run anytime the graphql schema is updated at the backend.
+
+Libraries:
+
+"@graphql-codegen/cli"
+"@graphql-codegen/fragment-matcher"
+"@graphql-codegen/typescript"
 
 ```js
 npm run graphql:gen
