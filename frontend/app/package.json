@@ -5,15 +5,20 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@apollo/client": "^3.3.15",
+    "axios": "^0.21.1",
     "component-avatar": "./src/components/Avatar",
     "component-button": "./src/components/Button",
     "component-card": "./src/components/card",
     "component-confirmation": "./src/components/Confirmation",
+    "component-dialog": "./src/components/Dialog",
+    "component-map": "./src/components/Map",
     "component-snackbar": "./src/components/Snackbar",
     "component-spinner": "./src/components/Spinner",
     "component-text-field": "./src/components/TextField",
@@ -22,8 +27,10 @@
     "container-app": "./src/containers/App",
     "containers": "./src/containers",
     "graphql-client": "./src/graphql-client",
+    "hooks": "./src/hooks",
     "icons": "./src/icons",
     "lodash": "^4.17.21",
+    "mapbox-gl": "^2.2.0",
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",
     "page-users-list": "./src/pages/UserList",
@@ -35,18 +42,26 @@
     "resources": "./src/resources",
     "styles": "./src/styles",
     "typescript": "^4.2.4",
-    "utils": "./src/utils"
+    "utils": "./src/utils",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "@types/faker": "^5.5.3",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.168",
+    "@types/mapbox-gl": "^2.1.1",
     "@types/node": "^12.20.11",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "@types/uuid": "^8.3.0",
+    "faker": "^5.5.3",
+    "jest": "26.6.0",
+    "ts-jest": "^26.5.5",
+    "ts-node": "^9.1.1"
   },
   "eslintConfig": {
     "extends": [

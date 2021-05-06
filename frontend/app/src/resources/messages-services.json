@@ -1,3 +1,5 @@
 {
-  "somethingWentWrong": "Oops! Something went wrong! Please try again later."
+  "somethingWentWrong": "Oops! Something went wrong! Please try again later.",
+  "userCreatedSuccess": "User created successfully.",
+  "locationNotFound": "Location not found"
 }

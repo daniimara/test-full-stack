@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.map {
+  width: 100%;
+  height: 336px;
+  border-radius: map-get($borderRadius, lg);
+  background-color: map-get($colors, gray2);
+}
