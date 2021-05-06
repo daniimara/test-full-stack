@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { queryListUsers } from "graphql-client/queries/get-users";
 import { mutationCreateUser } from "graphql-client/mutations/create-user";
 import { mutationUpdateUser } from "graphql-client/mutations/update-user";
+import { mutationDeleteUser } from "graphql-client/mutations/delete-user";
 import { DEFAULT_PAGE_SIZE } from "config/constants";
 
 interface UseUserMutationsProps {
@@ -117,11 +118,59 @@ const useUserMutations = (props: UseUserMutationsProps) => {
     });
   };
 
+  const [doDeleteUser, { loading: deleteUserLoading }] = useMutation<Mutation>(
+    mutationDeleteUser,
+    {
+      onCompleted: async () => {
+        if (props && props.onCompleted) {
+          props.onCompleted();
+        }
+      },
+      onError: props.onError,
+    }
+  );
+
+  const deleteUser = async (id: string) => {
+    await doDeleteUser({
+      variables: {
+        userId: id,
+      },
+      update: (cache, result) => {
+        const cachedData: Query | null = cache.readQuery({
+          query: queryListUsers,
+          variables: {
+            input: queryListUsersInput,
+          },
+        });
+
+        const newUserList =
+          cachedData?.listUsers?.items.filter(
+            (user) => user.id !== result?.data?.deleteUser
+          ) || [];
+
+        cache.writeQuery({
+          query: queryListUsers,
+          variables: {
+            input: queryListUsersInput,
+          },
+          data: {
+            listUsers: {
+              exclusiveStartKey: cachedData?.listUsers.exclusiveStartKey,
+              items: [...newUserList],
+            },
+          },
+        });
+      },
+    });
+  };
+
   return {
     createUser: createUser,
     updateUser: updateUser,
+    deleteUser: deleteUser,
     createUserLoading,
     updateUserLoading,
+    deleteUserLoading,
   };
 };
 

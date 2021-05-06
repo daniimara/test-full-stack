@@ -1,14 +1,14 @@
 {
   "editUserTitle": "Edit User",
-    "createUserTitle": "Create User",
-    "listTitle": "Users list",
-    "name": "Name",
-    "address": "Address",
-    "description": "Description",
-    "createUser": "CREATE USER",
-    "searchPlaceHolder": "Search...",
-    "created": "created",
-    "delete": "Delete",
-    "edit": "Edit",
-    "isRequired": "is required"
+  "createUserTitle": "Create User",
+  "listTitle": "Users list",
+  "name": "Name",
+  "address": "Address",
+  "description": "Description",
+  "createUser": "CREATE USER",
+  "searchPlaceHolder": "Search...",
+  "created": "created",
+  "delete": "Delete",
+  "edit": "Edit",
+  "isRequired": "is required"
 }

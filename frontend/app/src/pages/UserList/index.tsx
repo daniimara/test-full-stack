@@ -7,6 +7,7 @@ import Button from "components/Button";
 import Card from "components/Card";
 import Snackbar, { SnackbarProps } from "components/Snackbar";
 import Spinner from "components/Spinner";
+import Confirmation from "components/Confirmation";
 import UserEdit from "./UserEdit";
 
 import {
@@ -51,6 +52,9 @@ export const UserList: FC<UserListProps> = ({
   >(undefined);
   const [stateUser, setStateUser] = useState<User | undefined>(undefined);
   const [openUserDialog, setOpenUserDialog] = useState<boolean>(false);
+  const [openConfirmationDialog, setOpenConfirmationDialog] = useState<boolean>(
+    false
+  );
   const [snackbar, setSnackbar] = useState<SnackbarProps>({
     open: false,
     type: "info",
@@ -88,15 +92,27 @@ export const UserList: FC<UserListProps> = ({
     setOpenUserDialog(true);
   };
 
+  const handleDeleteUser = (user: User) => {
+    setStateUser(user);
+    setOpenConfirmationDialog(true);
+  };
+
+  const handleDoDeleteUser = async () => {
+    setOpenConfirmationDialog(false);
+    if (stateUser) {
+      deleteUser(stateUser.id);
+    }
+  };
+
   useEffect(() => {
     setStateExclusiveStartKey(exclusiveStartKey);
   }, [exclusiveStartKey]);
 
   useEffect(() => {
-    if (!openUserDialog) {
+    if (!openUserDialog && !openConfirmationDialog) {
       setTimeout(() => setStateUser(undefined), 2000);
     }
-  }, [openUserDialog]);
+  }, [openUserDialog, openConfirmationDialog]);
 
   const { updateUser, updateUserLoading } = useUserMutations({
     exclusiveStartKey: stateExclusiveStartKey,
@@ -164,6 +180,25 @@ export const UserList: FC<UserListProps> = ({
     }
   );
 
+  const { deleteUser, deleteUserLoading } = useUserMutations({
+    exclusiveStartKey: stateExclusiveStartKey,
+    page: page,
+    onCompleted: () => {
+      setSnackbar({
+        open: true,
+        type: "info",
+        message: serviceMessages.userDeletedSuccess,
+      });
+    },
+    onError: () => {
+      setSnackbar({
+        open: true,
+        type: "error",
+        message: serviceMessages.somethingWentWrong,
+      });
+    },
+  });
+
   useEffect(() => {
     if (!!searchValue && searchValue.length > DEFAULT_SEARCH_CHARACTER) {
       getUserByName({ variables: { userName: searchValue } });
@@ -172,7 +207,11 @@ export const UserList: FC<UserListProps> = ({
     }
   }, [getUserByName, searchValue]);
 
-  const loading = listUsersLoading || createUserLoading || updateUserLoading;
+  const loading =
+    listUsersLoading ||
+    createUserLoading ||
+    updateUserLoading ||
+    deleteUserLoading;
 
   const userCard = (user: User) => {
     return (
@@ -183,6 +222,7 @@ export const UserList: FC<UserListProps> = ({
           description={user.description}
           createdAt={user.createdAt}
           onEdit={() => handleEditUser(user)}
+          onDelete={() => handleDeleteUser(user)}
         />
       </Fragment>
     );
@@ -198,6 +238,18 @@ export const UserList: FC<UserListProps> = ({
           onSubmit={handleSubmitUser}
         />
       )}
+      <Confirmation
+        open={openConfirmationDialog}
+        message={actionMessages.deleteConfirmationText}
+      >
+        <div className="user-list-confirmation-actions">
+          <Button value={actionMessages.delete} onClick={handleDoDeleteUser} />
+          <Button
+            value={actionMessages.cancel}
+            onClick={() => setOpenConfirmationDialog(false)}
+          />
+        </div>
+      </Confirmation>
       {(loading || getUserByNameLoading) && <Spinner />}
       <div className="user-list">
         <div className="user-list-header">
