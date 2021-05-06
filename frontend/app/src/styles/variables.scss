@@ -1,0 +1,28 @@
+$fontSize: 16px;
+
+$colors: (
+  black: #000000,
+  white: white,
+  success: rgb(0, 158, 0),
+  info: rgb(86, 83, 255),
+  warning: rgb(255, 181, 44),
+  error: #ca6667,
+  gray: #979797,
+  gray2: #f2f2f2,
+  gray4: #f8f8f8,
+  gray5: #333333,
+);
+
+$fontWeights: (
+  light: 300,
+  regular: 400,
+  bold: 600,
+);
+
+$borderRadius: (
+  xs: 5px,
+  sm: 6px,
+  md: 6px,
+  lg: 8px,
+  xl: 8px,
+);

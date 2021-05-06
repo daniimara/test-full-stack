@@ -1,0 +1,10 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.avatar img {
+  vertical-align: middle;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  border: 1px solid map-get($colors, gray);
+}

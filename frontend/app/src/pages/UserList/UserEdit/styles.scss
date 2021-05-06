@@ -1,0 +1,98 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
+.edit-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .map {
+    margin-right: 60px;
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+
+    .text-field {
+      width: 100%;
+      margin-bottom: 36px;
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 62px;
+    }
+  }
+}
+
+@media (max-width: 1799px) {
+  .edit-user {
+    flex-direction: row;
+
+    .map {
+      width: 50%;
+      margin-right: 20px;
+    }
+
+    .fields {
+      width: 50%;
+    }
+
+    .actions {
+      button {
+        margin-left: 52px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .edit-user {
+    .map {
+      margin-bottom: 15px;
+    }
+
+    .actions {
+      button {
+        margin-left: 42px;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .edit-user {
+    flex-direction: column;
+
+    .map {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    .fields {
+      width: 100%;
+    }
+
+    .actions {
+      flex-direction: column;
+      justify-content: center;
+
+      button {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

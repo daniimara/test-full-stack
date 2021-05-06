@@ -1,0 +1,50 @@
+type User {
+  id: ID!
+  name: String!
+  dob: String
+  address: String!
+  description: String!
+  imageUrl: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type UsersWithPaginationParams {
+  items: [User]
+  exclusiveStartKey: String
+}
+
+input UserInput {
+  name: String!
+  dob: String
+  address: String!
+  description: String!
+  imageUrl: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String!
+  dob: String
+  address: String!
+  description: String!
+  imageUrl: String!
+}
+
+input ListUsersInput {
+  pageSize: Int!
+  exclusiveStartKey: String
+}
+
+type Query {
+  listAllUsers: [User]
+  listUsers(input: ListUsersInput!): UsersWithPaginationParams
+  getUserById(userId: String!): User
+  getUserByName(userName: String!): [User]
+}
+
+type Mutation {
+  createUser(user: UserInput!): User
+  updateUser(user: UpdateUserInput!): User
+  deleteUser(userId: String!): String
+}

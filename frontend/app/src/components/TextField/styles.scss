@@ -1,0 +1,76 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.text-field {
+  label {
+    display: block;
+    text-align: left;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: map-get($fontWeights, bold);
+    font-size: toRem(18);
+    color: map-get($colors, black);
+    margin-bottom: 8px;
+  }
+
+  input {
+    background: map-get($colors, white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: map-get($borderRadius, lg);
+    padding: 16px;
+  }
+
+  input[type="text"],
+  input::placeholder {
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: map-get($fontWeights, light);
+    font-size: toRem(24);
+    line-height: toRem(30);
+    color: map-get($colors, black);
+  }
+
+  input[type="text"] {
+    font-weight: normal;
+  }
+
+  .text-field-error {
+    color: map-get($colors, error);
+  }
+}
+
+@media (max-width: 1799px) {
+  .text-field {
+    label {
+      font-size: toRem(16);
+    }
+
+    input {
+      padding: 14px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .text-field {
+    label {
+      font-size: toRem(14);
+    }
+
+    input {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .text-field {
+    label {
+      font-size: toRem(13);
+    }
+
+    input {
+      padding: 8px;
+    }
+  }
+}
