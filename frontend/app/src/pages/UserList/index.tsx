@@ -83,6 +83,11 @@ export const UserList: FC<UserListProps> = ({
     setOpenUserDialog(true);
   };
 
+  const handleEditUser = (user: User) => {
+    setStateUser(user);
+    setOpenUserDialog(true);
+  };
+
   useEffect(() => {
     setStateExclusiveStartKey(exclusiveStartKey);
   }, [exclusiveStartKey]);
@@ -92,6 +97,25 @@ export const UserList: FC<UserListProps> = ({
       setTimeout(() => setStateUser(undefined), 2000);
     }
   }, [openUserDialog]);
+
+  const { updateUser, updateUserLoading } = useUserMutations({
+    exclusiveStartKey: stateExclusiveStartKey,
+    page: page,
+    onCompleted: () => {
+      setSnackbar({
+        open: true,
+        type: "info",
+        message: serviceMessages.userUpdatedSuccess,
+      });
+    },
+    onError: () => {
+      setSnackbar({
+        open: true,
+        type: "error",
+        message: serviceMessages.somethingWentWrong,
+      });
+    },
+  });
 
   const { createUser, createUserLoading } = useUserMutations({
     exclusiveStartKey: stateExclusiveStartKey,
@@ -114,10 +138,14 @@ export const UserList: FC<UserListProps> = ({
 
   const handleSubmitUser = async (user: User) => {
     setOpenUserDialog(false);
-    // TODO - Add a new field to upload image at the editUser
-    const id = uuidv4();
-    user.imageUrl = `https://source.unsplash.com/168x168/?portrait,face,${id}`;
-    await createUser(user);
+    if (user.id) {
+      await updateUser(user);
+    } else {
+      // TODO - Add a new field to upload image at the editUser
+      const id = uuidv4();
+      user.imageUrl = `https://source.unsplash.com/168x168/?portrait,face,${id}`;
+      await createUser(user);
+    }
   };
 
   const [getUserByName, { loading: getUserByNameLoading }] = useLazyQuery(
@@ -144,7 +172,7 @@ export const UserList: FC<UserListProps> = ({
     }
   }, [getUserByName, searchValue]);
 
-  const loading = listUsersLoading || createUserLoading;
+  const loading = listUsersLoading || createUserLoading || updateUserLoading;
 
   const userCard = (user: User) => {
     return (
@@ -154,6 +182,7 @@ export const UserList: FC<UserListProps> = ({
           title={user.name}
           description={user.description}
           createdAt={user.createdAt}
+          onEdit={() => handleEditUser(user)}
         />
       </Fragment>
     );

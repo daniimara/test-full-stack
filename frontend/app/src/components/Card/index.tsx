@@ -50,14 +50,18 @@ export const Card: FC<CardProps> = ({
     >
       <div className="user-content">
         <div className="user-actions">
-          {showIcons && onEdit && onDelete && (
+          {showIcons && (
             <>
-              <span className="user-icon" onClick={onDelete}>
-                <img alt={userMessages.delete} src={remove} />
-              </span>
-              <span className="user-icon" onClick={onEdit}>
-                <img alt={userMessages.edit} src={edit} />
-              </span>
+              {onDelete && (
+                <span className="user-icon" onClick={onDelete}>
+                  <img alt={userMessages.delete} src={remove} />
+                </span>
+              )}
+              {onEdit && (
+                <span className="user-icon" onClick={onEdit}>
+                  <img alt={userMessages.edit} src={edit} />
+                </span>
+              )}
             </>
           )}
         </div>
