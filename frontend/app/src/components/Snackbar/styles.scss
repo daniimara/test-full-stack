@@ -2,65 +2,64 @@
 @import "../../styles/mixins.scss";
 
 .snackbar {
-    background-color: map-get($colors, gray5);
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    width: 400px;
-    opacity: 0;
-    visibility: hidden;
-    color: map-get($colors, white);
-    padding: 16px;
-    border-radius: map-get($borderRadius, xs);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: -200px;
-    transition: all 200ms ease-in-out;
+  background-color: map-get($colors, gray5);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 400px;
+  opacity: 0;
+  visibility: hidden;
+  color: map-get($colors, white);
+  padding: 16px;
+  border-radius: map-get($borderRadius, xs);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: -200px;
+  transition: all 200ms ease-in-out;
+}
+
+.snackbar.visible {
+  opacity: 1;
+  bottom: 20px;
+  visibility: visible;
+}
+
+.snackbar.success {
+  background-color: map-get($colors, success);
+}
+
+.snackbar.info {
+  background-color: map-get($colors, info);
+}
+
+.snackbar.warning {
+  background-color: map-get($colors, warning);
+}
+
+.snackbar.error {
+  background-color: map-get($colors, error);
+}
+
+.snackbar .close {
+  font-size: toRem(18);
+  cursor: pointer;
+  transition: 200ms;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: map-get($colors, white);
+}
+
+@media (max-width: 480px) {
+  .snackbar {
+    width: 100%;
+    margin-left: 0;
+    left: 0;
+    border-radius: map-get($borderRadius, xs) map-get($borderRadius, xs) 0 0;
   }
-  
+
   .snackbar.visible {
-    opacity: 1;
-    bottom: 20px;
-    visibility: visible;
+    bottom: 0;
   }
-  
-  .snackbar.success {
-    background-color: map-get($colors, success);
-  }
-  
-  .snackbar.info {
-    background-color: map-get($colors, info);
-  }
-  
-  .snackbar.warning {
-    background-color: map-get($colors, warning);
-  }
-  
-  .snackbar.error {
-    background-color: map-get($colors, error);
-  }
-  
-  .snackbar .close {
-    font-size: toRem(18);
-    cursor: pointer;
-    transition: 200ms;
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-    color: map-get($colors, white);
-  }
-  
-  @media (max-width: 480px) {
-    .snackbar {
-      width: 100%;
-      margin-left: 0;
-      left: 0;
-      border-radius: map-get($borderRadius, xs) map-get($borderRadius, xs) 0 0;
-    }
-  
-    .snackbar.visible {
-      bottom: 0;
-    }
-  }
-  
+}

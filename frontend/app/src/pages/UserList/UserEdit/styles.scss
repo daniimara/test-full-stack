@@ -22,7 +22,6 @@
         width: 100%;
       }
     }
-
   }
 
   .actions {
@@ -50,7 +49,6 @@
     }
 
     .actions {
-  
       button {
         margin-left: 52px;
       }
@@ -60,18 +58,15 @@
 
 @media (max-width: 1200px) {
   .edit-user {
-
     .map {
       margin-bottom: 15px;
     }
 
     .actions {
-  
       button {
         margin-left: 42px;
       }
     }
-
   }
 }
 
@@ -92,7 +87,7 @@
     .actions {
       flex-direction: column;
       justify-content: center;
-  
+
       button {
         width: 100%;
         margin-left: 0;

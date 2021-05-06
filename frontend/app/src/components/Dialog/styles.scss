@@ -19,7 +19,6 @@
     background-color: map-get($colors, gray4);
     border-radius: map-get($borderRadius, lg);
     position: relative;
-    
   }
 
   .content {
@@ -54,33 +53,33 @@
 }
 
 .content.in {
-  animation:unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes unfoldIn {
   0% {
-    transform:scaleY(.005) scaleX(0);
+    transform: scaleY(0.005) scaleX(0);
   }
   50% {
-    transform:scaleY(.005) scaleX(1);
+    transform: scaleY(0.005) scaleX(1);
   }
   100% {
-    transform:scaleY(1) scaleX(1);
+    transform: scaleY(1) scaleX(1);
   }
 }
 
 .content.out {
-  animation:unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes unfoldOut {
   0% {
-    transform:scaleY(1) scaleX(1);
+    transform: scaleY(1) scaleX(1);
   }
   50% {
-    transform:scaleY(.005) scaleX(1);
+    transform: scaleY(0.005) scaleX(1);
   }
   100% {
-    transform:scaleY(.005) scaleX(0);
+    transform: scaleY(0.005) scaleX(0);
   }
 }

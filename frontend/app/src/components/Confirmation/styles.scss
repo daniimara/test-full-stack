@@ -2,15 +2,16 @@
 @import "../../styles/mixins.scss";
 
 .confirmation {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    h1, h2 {
-        margin-bottom: 100px;
-    }
+  h1,
+  h2 {
+    margin-bottom: 100px;
+  }
 
-    h2 {
-        text-align: center;
-    }
+  h2 {
+    text-align: center;
+  }
 }

@@ -50,7 +50,7 @@ After update any dependency, you have to run `install` again
 npm install
 ```
 
-Create a `.env` file in the root directory. 
+Create a `.env` file in the root directory.
 This file is not checked in.
 
 ```
@@ -99,7 +99,6 @@ npm run test:coverage
 ```
 
 ##### `build`
-
 
 ```js
 npm run build

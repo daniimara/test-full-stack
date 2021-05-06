@@ -6,7 +6,7 @@
   flex-direction: column;
   background: map-get($colors, white);
   border-radius: map-get($borderRadius, lg);
-  
+
   .user-content {
     padding: 40px 32px;
 
@@ -40,7 +40,7 @@
     margin-top: 32px;
 
     .user-created-at-date {
-      color: map-get($colors, error)
+      color: map-get($colors, error);
     }
   }
 
